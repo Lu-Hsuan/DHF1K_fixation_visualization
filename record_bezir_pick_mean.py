@@ -10,14 +10,14 @@ from utilty import *
 v_path = 'video/002.AVI'
 video_p = int(v_path.split('/')[1].split('.')[0])
 print(video_p)
-load = 0
+load = 1
 mean_cal = 0
 people = 17
-
+os.makedirs("record_npy",exist_ok=True)
 if(load == 1):
     point_list = np.load(f'record_npy/record_{str(video_p).zfill(4)}_f60_p{people}.npy',allow_pickle=True)
 else:
-    point_list = genrecord_npy(video_p,people,rate=60,save=0)
+    point_list = genrecord_npy(video_p,people,rate=60,save=1)
     
 po = np.moveaxis(point_list,0,1)
 print(po.shape)
@@ -32,5 +32,5 @@ else:
     label_draw = np.where(count_c > len(mean_list)-th,True,False)
 #'''
 
-draw_attention_p(v_path,po,people,f'out_video/{str(video_p).zfill(4)}_{10}_90fps_bei_pick_mean_test',mean=True,mean_list = mean_list,label_draw=label_draw)
+draw_attention_p(v_path,po,people,f'out_video/{str(video_p).zfill(4)}_{10}_90fps_bei_pick_mean',mean=True,mean_list = mean_list,label_draw=label_draw)
 #'''

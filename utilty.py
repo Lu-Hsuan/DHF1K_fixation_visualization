@@ -204,10 +204,10 @@ def draw_iter(xy_iter_list,per_num,img,color_table,videoWrite,i,mean=False,label
             if(j == per_num):
                 col = color_table[-1]
             else:
-                col = color_table[k]
                 k += 1
-                if(k >= 3):
+                if(k >= 8):
                     continue
+                col = color_table[k]
             start_p = int(max(0,(i*3+iter_)/n+m)) # 0-1 1-2 2-8-10
             end_p = int(min(start_p+length,point_num-1)) # 8-9 or 13-14 or 22-30
             
