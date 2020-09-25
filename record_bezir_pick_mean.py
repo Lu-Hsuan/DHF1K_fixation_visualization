@@ -7,17 +7,17 @@ import random
 import matplotlib.pyplot as plt
 from utilty import *
 
-v_path = 'video/564.AVI'
+v_path = 'video/002.AVI'
 video_p = int(v_path.split('/')[1].split('.')[0])
 print(video_p)
-load = 1
+load = 0
 mean_cal = 0
 people = 17
 
 if(load == 1):
     point_list = np.load(f'record_npy/record_{str(video_p).zfill(4)}_f60_p{people}.npy',allow_pickle=True)
 else:
-    point_list = genrecord_npy(video_p,people,rate=60,save=1)
+    point_list = genrecord_npy(video_p,people,rate=60,save=0)
     
 po = np.moveaxis(point_list,0,1)
 print(po.shape)

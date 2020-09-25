@@ -141,17 +141,6 @@ def xy_iter_(p_s,p_d):
     #if(p_d[0]-p_s[0] >= 0 and p_d[1]-p_s[1] >= 0):
 
     px , py = tri_bezier(p_s,p_c1,p_c2,p_d,t)
-    '''
-    if(l <= 1.0):
-        xy_p[:,0] = p_d[0]
-        xy_p[:,1] = p_d[1]
-    else :
-    '''
-    '''
-    for i in range(rat_):
-        xy_p[i,0] = x
-        xy_p[i,1] = y
-    '''
     xy_p[:,0] = px
     xy_p[:,1] = py
     return xy_p
@@ -181,20 +170,6 @@ def per_xy_iter(f_point_list,meanp_list,per_num,p_temp,p_mean=None):
     p_mean[0,0] = mean[0]
     p_mean[0,1] = mean[1]
     #'''
-    '''
-    colors = 'bgrcmykbgrcmykbgrcmykbgrcmyk'
-    n_clusters_ = len(labels_unique)
-    for k, col in zip(range(n_clusters_), colors):
-        my_members = labels == k
-        cluster_center = cluster_centers[k]
-        plt.plot(p_temp[my_members, 0], p_temp[my_members, 1], col + '.')
-        plt.plot(cluster_center[0], cluster_center[1], 'o', markerfacecolor=col,
-                markeredgecolor='k', markersize=8)
-    plt.title('Estimated number of clusters: %d' % n_clusters_)
-    plt.xlim([0,640])
-    plt.ylim([360,0])
-    plt.show()
-    '''
     return xy_iter_list
 
 def draw_iter(xy_iter_list,per_num,img,color_table,videoWrite,i,mean=False,label_point=None):
@@ -247,23 +222,9 @@ def draw_iter(xy_iter_list,per_num,img,color_table,videoWrite,i,mean=False,label
                                (int(x_i2), int(y_i2)),col_, p//4+1)
 
             cv2.circle(img_,(int(x_i2),int(y_i2)),5,col,-1)
-            '''
-            if(i*3+iter_ < 9):
-                if(xy_last_list != []):
-                    #start_p = int(min(xy_p.shape[0]-1,(i*3+iter_)/3+4)) # 
-                    #end_p   = min(start_p+6,xy_p.shape[0]-1) # 9
-                    cv2.line(img_, (int(xy_last_list[j][0,0]), int(xy_last_list[j][0,1])), \
-                            (int(xy_last_list[j][-1,0]), int(xy_last_list[j][-1,1])),col, 5)
-                    #cv2.circle(img_,(int(xy_last_list[j][-1,0]), int(xy_last_list[j][-1,1])),5,col,-1)
-            if(i*3+iter_ < 9):
-                if(xy_last2_list != []):
-                    start_p = int(min(xy_p.shape[0]-1,(i*3+iter_)/1+3)) # 3-9
-                    cv2.line(img_, (int(xy_last2_list[j][start_p,0]), int(xy_last2_list[j][start_p,1])), \
-                            (int(xy_last2_list[j][-1,0]), int(xy_last2_list[j][-1,1])),col, 5)
-            '''
         cv2.imshow('name',img_)
         cv2.waitKey(1)
-        #videoWrite.write(img_)
+        videoWrite.write(img_)
     #"""
 def draw_attention_p(video_path,point_list,per_num,output_='record_temp',mean=False,mean_list = None,label_draw=None):
     #img = np.zeros((video_res_y,video_res_x,3),dtype=np.uint8)
@@ -277,17 +238,6 @@ def draw_attention_p(video_path,point_list,per_num,output_='record_temp',mean=Fa
     p_temp[:,1] = rows//2
     p_mean[:,0] = cols//2
     p_mean[:,1] = rows//2
-    '''
-    color_table = [ [255,0,0],
-                    [0,255,0],
-                    [0,0,255],
-                    [255,0,255],
-                    [123,104,238],
-                    [255,193,193],
-                    [255,69,0],
-                    [255,255,0],
-                    [0,255,255]]
-    '''
     color_table = [ [200,0,0],
                     [0,200,0],
                     [0,0,200],
